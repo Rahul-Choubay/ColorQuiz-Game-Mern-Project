@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+// ...
+
 const ClickCounter = () => {
   const [clicks, setClicks] = useState(0);
   const [clickFeel, setClickFeel] = useState(1);
@@ -10,18 +12,30 @@ const ClickCounter = () => {
   const [disableButtons, setDisableButtons] = useState(false);
   const navigate = useNavigate();
   const auth = localStorage.getItem('user');
+
   const logout = () => {
-      localStorage.clear('user');
-      navigate('/signup')
-  }
-  const handleClick = (color) => {
-    const feel = prompt(`Enter the feel for ${color} click (default is 1):`);
+    localStorage.clear('user');
+    navigate('/signup');
+  };
+
+  const handleClick = (name) => {
+    const feel = prompt(`Enter the feel for ${name} click (default is 1):`);
     const clickCount = feel ? parseInt(feel, 10) : 1;
 
     setClicks((prevClicks) => prevClicks + clickCount);
     setClickFeel(clickCount);
 
-    setResult([...result, { color, clickCount }]);
+    setResult([...result, { name, clickCount }]);
+  };
+
+  const handleType = (size) => {
+    const feel = prompt(`Enter the feel for ${size} click (default is 1):`);
+    const clickCount = feel ? parseInt(feel, 10) : 1;
+
+    setClicks((prevClicks) => prevClicks + clickCount);
+    setClickFeel(clickCount);
+
+    setResult([...result, { size, clickCount }]);
   };
 
   const resetGame = () => {
@@ -35,10 +49,7 @@ const ClickCounter = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setTimer((prevTimer) => {
-        // Disable buttons during the last 3 seconds
-        if (prevTimer <= 4) {
-          setDisableButtons(true);
-        }
+        setDisableButtons(prevTimer <= 4);
         return prevTimer - 1;
       });
     }, 1000);
@@ -48,27 +59,31 @@ const ClickCounter = () => {
 
   useEffect(() => {
     if (timer === 0) {
-      const colorCounts = result.reduce((acc, { color, clickCount }) => {
-        acc[color] = (acc[color] || 0) + clickCount;
+      const colorCounts = result.reduce((acc, { name, clickCount }) => {
+        acc[name] = (acc[name] || 0) + clickCount;
         return acc;
       }, {});
 
-      const maxColor = Object.keys(colorCounts).reduce((a, b) =>
+      const winnerColor = Object.keys(colorCounts).reduce((a, b) =>
         colorCounts[a] < colorCounts[b] ? a : b, ''
       );
 
-      alert(`Result: ${maxColor} received the Minimum Amount!`);
+      const typeCounts = result.reduce((acc, { size, clickCount }) => {
+        acc[size] = (acc[size] || 0) + clickCount;
+        return acc;
+      }, {});
 
-      const roundInfo = {
-        clicks,
-        winner: maxColor,
-      };
+      const winnerSize = Object.keys(typeCounts).reduce((a, b) =>
+        typeCounts[a] < typeCounts[b] ? a : b, ''
+      );
 
-      setResultHistory((prevHistory) => [...prevHistory, roundInfo]);
+      alert(`Result: Color - ${winnerColor} and Size - ${winnerSize} received the Minimum Amount!`);
 
+      setResultHistory((prevHistory) => [...prevHistory, { clicks, winnerColor, winnerSize }]);
       resetGame();
     }
   }, [timer, clicks, result]);
+
 
   return (
     <div>
@@ -78,7 +93,7 @@ const ClickCounter = () => {
         {colors.map((color, index) => (
           <button
             key={index}
-            style={{ backgroundColor: color , color:"white", width:"15vw", height:"6vh", marginLeft:"1rem"}}
+            style={{ backgroundColor: color, color: 'white', width: '15vw', height: '6vh', marginLeft: '1rem' }}
             onClick={() => handleClick(color)}
             disabled={disableButtons}
           >
@@ -86,21 +101,25 @@ const ClickCounter = () => {
           </button>
         ))}
       </div>
+      <div>
+        <button style={{  width: '15vw', height: '6vh', marginLeft: '1rem' , marginTop:'2rem' }} onClick={() => handleType('Big')} disabled={disableButtons}>Big</button>
+        <button style={{   width: '15vw', height: '6vh', marginLeft: '1rem', marginTop:"2rem"}} onClick={() => handleType('Small')} disabled={disableButtons}>Small</button>
+      </div>
       <p>Total Amount: {clicks}</p>
       <p>Add Amount: {clickFeel}</p>
 
       <h3>Result History:</h3>
       <ul>
-        {resultHistory.slice().reverse().map((historyItem, index) => (
+        {resultHistory.slice().reverse().map(({ clicks, winnerColor, winnerSize }, index) => (
           <li key={index}>
-            Round {resultHistory.length - index}: Winner - {historyItem.winner}
+            Round {resultHistory.length - index}: Winner - Color: {winnerColor}, Size: {winnerSize}
           </li>
         ))}
       </ul>
       <div>
-      <Link onClick={logout} className="StyledLink" to="/signup">
-        Logout ({JSON.parse(auth).username})
-      </Link>
+        <Link onClick={logout} className="StyledLink" to="/signup">
+          Logout ({JSON.parse(auth).username})
+        </Link>
       </div>
     </div>
   );
