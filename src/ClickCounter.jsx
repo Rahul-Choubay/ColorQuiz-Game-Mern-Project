@@ -90,14 +90,14 @@ const ClickCounter = () => {
     alignItems: "center", textAlign:"center"}}>
     <div style={{width:"30vw", border:"1px solid black", height:"98vh"}} >
     <div >
-      <h1 style={{width:"30vw", border:"0.5px solid black"}}>Color Quiz Game</h1>
+      <h1 style={{width:"30vw", border:"0.5px solid black",color:"white", backgroundColor:"#fe0002"}}>Color Quiz Game</h1>
       <div style={{ display: "flex",
         flexDirection: "row",
         gap:"40%",
         justifyContent: "center",
         alignItems: "center",}}>
-      <p style={{width:"40%",border:"0.5px solid black"}}>Time Left:<span> 00 :{timer}</span>  seconds</p>
-      <Link onClick={logout} className="StyledLink" style={{border:"0.5px solid black"}} to="/signup">
+      <p style={{width:"40%",border:"0.5px solid black",backgroundColor:"#f0f0f0"}}>Time Left:<span> 00 :{timer}</span>  seconds</p>
+      <Link onClick={logout} className="StyledLink" style={{border:"0.5px solid black", backgroundColor:"#f0f0f0"}} to="/">
           Logout ({JSON.parse(auth).username})
         </Link>
         </div>
@@ -121,13 +121,14 @@ const ClickCounter = () => {
       <p>Add Amount: {clickFeel}</p>
 
       <h3>Result History:</h3>
-      <ul>
-        {resultHistory.slice().reverse().map(({ clicks, winnerColor, winnerSize }, index) => (
-          <li key={index}>
-            Round {resultHistory.length - index}: Winner - Color: {winnerColor}, Size: {winnerSize}
-          </li>
-        ))}
-      </ul>
+      <ul style={{ width: '26.2vw', marginLeft: '0.3rem', overflowY: 'scroll',overflowX:"hidden", height: '32vh', border: '0.5px solid black' }}>
+  {resultHistory.slice().reverse().map(({ clicks, winnerColor, winnerSize }, index) => (
+    <li key={index} style={{ width: '24.2vw', marginRight: '3rem', marginTop: '0.2rem', height: '3vh', border: '0.5px solid black', justifyContent: 'center', alignItems: 'center' }}>
+      {resultHistory.length - index}: Winner - Color: {winnerColor}, Size: {winnerSize}
+    </li>
+  ))}
+</ul>
+
       <div>
         
       </div>

@@ -27,7 +27,7 @@ const SignUp = () => {
         console.warn(data);
        if (data.username,password,email){
             localStorage.setItem("user", JSON.stringify(data));
-            navigate('/gamepage')
+            navigate('/')
         }
     } catch (error) {
         alert("pleases enter correct details");
