@@ -86,14 +86,26 @@ const ClickCounter = () => {
 
 
   return (
-    <div>
-      <h1>Amount Add Counter</h1>
-      <p>Time Left: {timer} seconds</p>
+    <div style={{ width:"100vw", display:"flex", justifyContent: "center",
+    alignItems: "center", textAlign:"center"}}>
+    <div style={{width:"30vw", border:"1px solid black", height:"98vh"}} >
+    <div >
+      <h1 style={{width:"30vw", border:"0.5px solid black"}}>Color Quiz Game</h1>
+      <div style={{ display: "flex",
+        flexDirection: "row",
+        gap:"40%",
+        justifyContent: "center",
+        alignItems: "center",}}>
+      <p style={{width:"40%",border:"0.5px solid black"}}>Time Left:<span> 00 :{timer}</span>  seconds</p>
+      <Link onClick={logout} className="StyledLink" style={{border:"0.5px solid black"}} to="/signup">
+          Logout ({JSON.parse(auth).username})
+        </Link>
+        </div>
       <div>
         {colors.map((color, index) => (
           <button
             key={index}
-            style={{ backgroundColor: color, color: 'white', width: '15vw', height: '6vh', marginLeft: '1rem' }}
+            style={{ backgroundColor: color, color: 'white', width: '25%', height: '6vh', marginLeft: '1rem' }}
             onClick={() => handleClick(color)}
             disabled={disableButtons}
           >
@@ -102,8 +114,8 @@ const ClickCounter = () => {
         ))}
       </div>
       <div>
-        <button style={{  width: '15vw', height: '6vh', marginLeft: '1rem' , marginTop:'2rem' }} onClick={() => handleType('Big')} disabled={disableButtons}>Big</button>
-        <button style={{   width: '15vw', height: '6vh', marginLeft: '1rem', marginTop:"2rem"}} onClick={() => handleType('Small')} disabled={disableButtons}>Small</button>
+        <button style={{  width: '25%', height: '6vh', marginLeft: '1rem' , marginTop:'2rem' }} onClick={() => handleType('Big')} disabled={disableButtons}>Big</button>
+        <button style={{    width: '25%', height: '6vh', marginLeft: '1rem', marginTop:"2rem"}} onClick={() => handleType('Small')} disabled={disableButtons}>Small</button>
       </div>
       <p>Total Amount: {clicks}</p>
       <p>Add Amount: {clickFeel}</p>
@@ -117,10 +129,10 @@ const ClickCounter = () => {
         ))}
       </ul>
       <div>
-        <Link onClick={logout} className="StyledLink" to="/signup">
-          Logout ({JSON.parse(auth).username})
-        </Link>
+        
       </div>
+    </div>
+    </div>
     </div>
   );
 };
