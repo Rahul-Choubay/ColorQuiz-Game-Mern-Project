@@ -10,8 +10,8 @@ const Navbar =()=>{
     };
     return(
         <div>
-     <Link style={{border:"0.5px solid black", backgroundColor:"#f0f0f0",textDecoration:"none", marginLeft:'0.5rem'}} to="/">
-          Wallet
+     <Link style={{border:"0.5px solid black", backgroundColor:"#f0f0f0",textDecoration:"none", marginLeft:'0.5rem'}} to="/gamepage">
+          Home
         </Link>
             <Link style={{border:"0.5px solid black", backgroundColor:"#f0f0f0",textDecoration:"none", marginLeft:'0.5rem'}} to="/profile">
           Profile

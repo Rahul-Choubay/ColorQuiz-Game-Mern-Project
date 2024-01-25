@@ -1,8 +1,11 @@
 import React from 'react';
+import Navbar from './Navbar';
 
 const CustomerServicePage = () => {
   return (
-    <div>
+    <div style={{ width: "100vw", display: "flex", justifyContent: "center", alignItems: "center", textAlign: "center", overflow: "hidden" }}>
+    <div style={{ width: "30vw", border: "1px solid black", height: "auto", overflow: "hidden" }}> 
+    <Navbar />
       <h1>Contact Customer Service</h1>
       <p>If you have any questions or issues, please feel free to reach out to our customer service team.</p>
 
@@ -33,6 +36,7 @@ const CustomerServicePage = () => {
           <button type="submit">Submit</button>
         </form>
       </div>
+    </div>
     </div>
   );
 };

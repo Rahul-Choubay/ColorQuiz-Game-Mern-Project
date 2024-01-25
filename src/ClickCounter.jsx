@@ -223,7 +223,7 @@ const ClickCounter = () => {
             alignItems: "center",
           }}>
             {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
-              <button key={num}  onClick={() => handleClick(num)}
+              <button key={num}  onClick={() => handleNumber(num)}
               disabled={disableButtons} style={{ width: '10%', height: "6vh", borderRadius: "19rem", border: "0.5px solid black", backgroundColor: "#f0f0f0" }}>{num}</button>
             ))}
           </div>

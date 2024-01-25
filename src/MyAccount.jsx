@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Navbar from "./Navbar";
 
 
 const MyAccount = () => {
@@ -10,7 +11,9 @@ const MyAccount = () => {
   }, []);
 
   return (
-    <div className="profile-container">
+<div style={{ width: "100vw", display: "flex", justifyContent: "center", alignItems: "center", textAlign: "center", overflow: "hidden" }}>
+      <div style={{ width: "30vw", border: "1px solid black", height: "auto", overflow: "hidden" }}> 
+      <Navbar />
       <h2>Welcome to your Profile</h2>
       {userInfo && (
         <div className="user-info">
@@ -25,6 +28,7 @@ const MyAccount = () => {
           </p>
         </div>
       )}
+    </div>
     </div>
   );
 };
