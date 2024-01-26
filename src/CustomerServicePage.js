@@ -1,44 +1,60 @@
 import React from 'react';
 import Navbar from './Navbar';
+import './CustomerServicePage.css'; // Import the CSS file
 
 const CustomerServicePage = () => {
   return (
-    <div style={{ width: "100vw", display: "flex", justifyContent: "center", alignItems: "center", textAlign: "center", overflow: "hidden" }}>
-    <div style={{ width: "30vw", border: "1px solid black", height: "auto", overflow: "hidden" }}> 
-    <Navbar />
-      <h1>Contact Customer Service</h1>
-      <p>If you have any questions or issues, please feel free to reach out to our customer service team.</p>
+    <div className="customer-service-container">
+      <div className="customer-service-content">
+        <Navbar />
+        <h1>Contact Customer Service</h1>
+        <p>If you have any questions or issues, please feel free to reach out to our customer service team.</p>
 
-      <div>
-        <h2>Contact Information:</h2>
-        <p>Email: support@example.com</p>
-        <p>Phone: 123-456-7890</p>
-      </div>
+        <div className="contact-information">
+          <h2>Contact Information:</h2>
+          <p>Email: support@example.com</p>
+          <p>Phone: 123-456-7890</p>
+        </div>
 
-      <div>
-        <h2>Submit a Support Ticket:</h2>
-        <form>
-          <label>
-            Name:
-            <input type="text" />
-          </label>
-          <br />
-          <label>
-            Email:
-            <input type="email" />
-          </label>
-          <br />
-          <label>
-            Message:
-            <textarea rows="4" />
-          </label>
-          <br />
-          <button type="submit">Submit</button>
-        </form>
+
+        <div className="container">
+        <div className="contact-form">
+          <form
+            action="https://formspree.io/f/mzbldgal"
+            method="POST"
+            className="contact-inputs">
+            <input
+              type="text"
+              placeholder="username"
+              name="username"
+              required
+              autoComplete="off"
+            />
+
+            <input
+              type="email"
+              name="Email"
+              placeholder="Email"
+              autoComplete="off"
+              required
+            />
+
+            <textarea
+              name="Message"
+              cols="30"
+              rows="10"
+              required
+              autoComplete="off"
+              placeholder="Enter you message"></textarea>
+
+            <input type="submit" value="send" />
+          </form>
+        </div>
       </div>
-    </div>
+      </div>
     </div>
   );
 };
 
 export default CustomerServicePage;
+

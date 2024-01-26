@@ -1,0 +1,62 @@
+/* CustomerServicePage.css */
+
+.customer-service-container {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+  }
+  
+  .customer-service-content {
+    width: 30vw;
+    border: 1px solid #ddd;
+    padding: 0px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .contact-information {
+    margin-top: 20px;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .contact-form {
+    width: 60%;
+  }
+  
+  .contact-inputs {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .contact-inputs input,
+  .contact-inputs textarea {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .contact-inputs textarea {
+    resize: vertical;
+  }
+  
+  .contact-inputs input[type="submit"] {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .contact-inputs input[type="submit"]:hover {
+    background-color: #45a049;
+  }
+  

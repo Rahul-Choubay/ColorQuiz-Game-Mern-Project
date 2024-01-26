@@ -4,6 +4,7 @@ import HomePage from './HomePage';
 import ClickCounter from './ClickCounter';
 import CustomerServicePage from './CustomerServicePage';
 import MyAccount from './MyAccount';
+import ProfileUpdate from './ProfileUpdate';
 
 const MyRoute = () => {
   return (
@@ -11,7 +12,9 @@ const MyRoute = () => {
       <Route path="/" element={<HomePage />} />
       <Route path="/gamepage" element={<ClickCounter />} />
       <Route path="/profile" element={<MyAccount />} />
-      <Route path="/coustomer" element={<CustomerServicePage />} />
+      <Route path="/customer" element={<CustomerServicePage />} />
+      <Route path="/edit-profile" element={<ProfileUpdate />} />
+      
     </Routes>
   );
 };

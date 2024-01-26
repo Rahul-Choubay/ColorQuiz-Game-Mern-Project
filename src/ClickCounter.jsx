@@ -293,30 +293,27 @@ const ClickCounter = () => {
             })}
           </ul>
         )}
-     
-     {activeSection === 'winAmountHistory' && (
+{activeSection === 'winAmountHistory' && (
   <ul style={{ width: '26.2vw', marginLeft: '0.3rem', overflowY: 'scroll', overflowX: 'hidden', height: '31vh', border: '0.5px solid black' }}>
-    {resultHistory.slice().reverse().map(({ clicks, winnerColor, winnerSize, winnerNumber, isWinner }, index) => {
+    {resultHistory.slice().map(({ clicks, winnerColor, winnerSize, winnerNumber, isWinner }) => {
       const doubledAmount = clicks * 2; // Double the amount
       const listItemContent = isWinner ? (
         <>
-          Winner - <br />
-          Winning Amount: {doubledAmount}
+          Winner : Winning Amount: {doubledAmount} 
+          
         </>
       ) : (
         clicks > 0 ? 'Lost' : null
       );
 
-      if (listItemContent) {
-        const serialNumber = resultHistory.length - index;
-        return (
-          <li key={index} style={{ width: '24.2vw', marginRight: '3rem', marginTop: '0.2rem', height: '3vh', border: '0.5px solid black', justifyContent: 'center', alignItems: 'center' }}>
-            {serialNumber}: {listItemContent}
-          </li>
-        );
-      }
-
-      return null;
+      return { listItemContent };
+    }).filter(({ listItemContent }) => listItemContent).map(({ listItemContent }, index) => {
+      const serialNumber = index + 1;
+      return (
+        <li key={`history-item-${serialNumber}`} style={{ width: '24.2vw', marginRight: '3rem', marginTop: '0.2rem', height: '3vh', border: '0.5px solid black', justifyContent: 'center', alignItems: 'center' }}>
+          {serialNumber}: {listItemContent}
+        </li>
+      );
     })}
   </ul>
 )}

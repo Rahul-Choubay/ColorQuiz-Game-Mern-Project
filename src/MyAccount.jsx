@@ -1,11 +1,17 @@
-// MyAccount.jsx
-
 import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import "./MyAccount.css"; // Import the CSS file
+import { Link, useNavigate } from 'react-router-dom';
 
 const MyAccount = () => {
   const [userInfo, setUserInfo] = useState(null);
+  const auth = localStorage.getItem('user');
+  const navigate = useNavigate();
+
+  const logout = () => {
+      localStorage.clear();
+      navigate('/signup');
+  };
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -32,7 +38,14 @@ const MyAccount = () => {
             </p>
           </div>
         )}
+        <div style={{display:"flex", flexDirection:"column"}}>
+        <Link to="/edit-profile" style={{ width: "15vw", height: "5vh", marginTop: "1rem" }}>Edit Your Profile</Link>
+         <button style={{width:"15vw", height:"5vh", marginTop:"1rem"}}><Link onClick={logout} >
+                Logout ({JSON.parse(auth).username})
+            </Link></button>
+            </div>
       </div>
+     
     </div>
   );
 };
